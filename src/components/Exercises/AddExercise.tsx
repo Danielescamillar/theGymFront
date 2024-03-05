@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { addExercises } from '../../services/exercises';
+import { SetStateAction, useState } from 'react';
+import { addExercises } from '../../services/exercises/exercisesService';
 import MenuAddExercise from './MenuAddExercise';
 
 function AddExercise() {
@@ -10,25 +10,25 @@ function AddExercise() {
     const [exercises, setExercises] = useState([]);
     const [submit, setSubmit] = useState(false);
 
-    const handleChangeName = (event) => {
+    const handleChangeName = (event: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
         event.preventDefault();
         setName(event.target.value);
 
     }
-    const handleChangeMuscularZone = (event) => {
+    const handleChangeMuscularZone = (event: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
         event.preventDefault();
         setMuscularZone(event.target.value);
     }
-    const handleChangeDescription = (event) => {
+    const handleChangeDescription = (event: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
         event.preventDefault();
         setdescription(event.target.value);
     }
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
 
         const data = await addExercises({name, muscularZone, description})
-        setExercises(...exercises, data)
+        setExercises([...exercises, data])
         setSubmit(!submit)
         setName('')
         setMuscularZone('')

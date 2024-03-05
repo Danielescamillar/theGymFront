@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getExercises } from '../../services/exercises';
+import { getExercises } from '../../services/exercises/exercisesService';
+import { useQuery } from '@tanstack/react-query';
 
 function ListExercise() {
 
@@ -12,13 +13,14 @@ function ListExercise() {
 
         fetchExercises();
     }, []);
-    console.log(exercises)
+
+    // useQuery()
     return (
         <div className='block content-center justify-center items-center font-bold h-screen'><h2 >My Exercises</h2>
             <ul>
                 {exercises.map(exercise => (
-                    <div className=' bg-slate-400 h-auto w-auto p-5 m-5' key={exercise._id}>
-                        <strong>{exercise.name}</strong><br/>{exercise.description}
+                    <div className=" opacity-50 flex h-auto grow items-center justify-start gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:opacity-90 md:flex-none md:p-2 md:px-3 m-1"  key={exercise._id}>
+                        <strong>{exercise.name}</strong><p>{exercise.description}</p>
                     </div>
                 ))}
             </ul></div>

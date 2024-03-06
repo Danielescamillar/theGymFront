@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const CurrentDate = () => {
+export const CurrentDate: React.FC = () => {
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -12,13 +12,12 @@ const CurrentDate = () => {
   }, []);
 
   const day = date.getDate();
-  const month = date.toLocaleString('es-ES', { month: 'long' });
+  const month = date.toLocaleString('en-EN', { month: 'long' });
   const year = date.getFullYear();
 
   return (
-    <div className=' font-extrabold hover:bg-slate-200'>
-      <p>Date:</p>
-      <p>{`${day} de ${month} de ${year}`}</p>
+    <div className=' text-white font-extrabold hover:text-slate-200'>
+      <p>Date: {`${day} de ${month} de ${year}`}</p>
     </div>
   );
 };
